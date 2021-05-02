@@ -19,14 +19,14 @@
    
     fetchTasks()
    }, [ ])
-   //fetch data from server
 
+   //fetch data from the server
    const fetchTask = async id => {
     const res = await fetch(`http://localhost:5000/tasks/${id}`)
     const data = await res.json()
     return data
   }
- 
+ //add a task to the server
    const addTask = async task => {
     const res = await fetch('http://localhost:5000/tasks', {
       method: 'POST',
@@ -38,13 +38,14 @@
     const data = await res.json()
     setTasks([...tasks, data])
    }
-
+ //delete a task from the server
    const deleteTask = async id =>{
      await fetch(`http://localhost:5000/tasks/${id}`, {
        method: 'DELETE'
      })
     setTasks(tasks.filter(task => task.id!==id))
    }
+ //toggle the reminder status  
    const toggleReminer = async id => {
      const taskToToggle = await fetchTask(id)
      const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
@@ -56,6 +57,8 @@
        },
        body: JSON.stringify(updTask)
      })
+
+     console.log('res', res);
 
      const data = await res.json()
 

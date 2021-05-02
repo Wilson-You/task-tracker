@@ -7,6 +7,7 @@ const Footer = () => {
             <Link to='/about'>About</Link>
         </footer>
     )
+
 }
 
 export default Footer
